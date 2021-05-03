@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+    
+            <label>Name:</label><br>
+            <input [(ngModel)] = "name" type = "text" (input) = "onUpdateName($event)">
+            <br><br>
+    
+            <p>Hi {{nameTemp}}. Lets generate some text"</p>
+    
+            <br><br>
+            <div class="row">
+                <div class="col-sm-2"><button class = "btn btn-secondary" [disabled] = !allowGenerate 
+                    (click) = onGenerate()>Generate</button></div>
+                <div class="col-sm-1"><button class = "btn btn-secondary" [disabled] = !allowGenerate 
+                    (click) = onReset()>Reset</button></div>
+                <div class="col-sm-9"></div>
+            </div>
+    
+            <p></p>
+    
+            <br>
+            <div *ngIf = "textGenerate; then thenBlock; else elseBlock"></div>
+            <ng-template #thenBlock>
+                    <div *ngIf = "textDisplay; then thenTxtBlock; else elseTxtBlock"></div>
+                    <ng-template #thenTxtBlock>
+                    <p>Hi {{name}}.
+                    
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </ng-template>
+                    <ng-template #elseTxtBlock><p>Your text is hidden.</p></ng-template>
+                <br>
+                
+                <button class = "btn btn-outline-success" (click) = onCreateCount()>Display Text</button>
+                <div *ngFor = "let count of counts"
+                    [ngClass] = "{'textRed': count % 5 == 0}">{{count}} times clicked.
+                </div>
+                <!--{{counter}}-->
+                <!--{{fifth}}-->
+            </ng-template>
+            <ng-template #elseBlock><p>Your text will be here...</p></ng-template>
+            <p></p>
+    
+        </div>
+    </div>
+    </div>
